@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Приборостроительный кластер города Заречного</title>
+
+        <!--[if lt IE 9]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <link rel="stylesheet" href="css/style.css" />
+
+        <script src="js/jquery-1.8.2.min.js"></script>
+        <script src="js/tools.js"></script>
+
+        <meta name="viewport" content="width=1024" />
+    </head>
+
+    <body>
+
+        <!-- wrapper -->
+        <div class="wrapper">
+            <div class="wrapper-inner">
+
+                <header>
+                    <nav>
+                        <ul>
+                            <li><a href="#">Новости</a></li>
+                            <li><a href="#">Компетенции</a></li>
+                            <li><a href="#">Проекты</a></li>
+                            <li><a href="#">Мероприятия</a></li>
+                            <li><a href="#">Аналитическая информация</a></li>
+                            <li><a href="#">Обратная связь</a></li>
+                            <li class="active"><a href="#">Контакты</a></li>
+                        </ul>
+                    </nav>
+
+                    <div class="header-inner">
+                        <div class="logo"><img src="images/logo.png" alt="" width="336" height="63" /></div>
+
+                        <div class="search">
+                            <form action="#" method="post">
+                                <div class="search-input"><span>Поиск по сайту</span><input type="text" name="search" value="" /></div>
+                                <div class="search-submit"><input type="submit" value="" /></div>
+                            </form>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- container -->
+                <div class="container">
+                    <div class="content">
+                        <h1>Контакты</h1>
+                        <p>442960, Пензенская область, г. Заречный, проезд Демакова, д. 5, офис  308</p>
+                        <p>Тел.: +7 (841-2) 60-00-26 (доб. 126)</p>
+                        <p>E-mail: <a href="#">pr-cluster@mail.ru</a></p>
+
+                        <div id="map"></div>
+                        <script src="http://api-maps.yandex.ru/2.0/?load=package.full&lang=ru-RU" type="text/javascript"></script>
+                        <script type="text/javascript">
+                            ymaps.ready(init);
+
+                            var myMap;
+
+                            function init () {
+                                myMap = new ymaps.Map('map', {
+                                    center: [56.136, 40.390],
+                                    zoom: 16
+                                });
+
+
+                                var myGeocoder = ymaps.geocode('442960, Пензенская область, г. Заречный, проезд Демакова, д. 5');
+                                myGeocoder.then(
+                                    function (res) {
+                                        var coords = res.geoObjects.get(0).geometry.getCoordinates();
+                                        myPlacemark = new ymaps.Placemark(coords, {
+                                        }, {
+                                            iconImageHref: 'images/map-icon-1.png',
+                                            iconImageSize: [72, 74],
+                                            iconImageOffset: [-15, -38]
+                                        });
+                                        myMap.geoObjects.add(myPlacemark);
+                                        myMap.setCenter(coords);
+                                    },
+                                    function (err) {
+                                        alert('Ошибка');
+                                    }
+                                );
+
+                            }
+                        </script>
+                    </div>
+                </div>
+                <!-- container END -->
+
+            </div>
+        </div>
+        <!-- wrapper END -->
+
+        <footer>
+            <div class="footer-inner">
+
+                <!-- footer top -->
+                <div class="footer-top">
+                    <div class="footer-logo"><img src="images/footer-logo.png" alt="" width="279" height="52" /></div>
+
+                    <div class="footer-address">442960 Пензенская область, г. Заречный, проезд Демакова, д. 5, офис 308</div>
+
+                    <div class="footer-contacts">
+                        <div class="footer-phone">+7 (8412) 60-00-26</div>
+                        E-mail: <a href="#">pr-cluster@mail.ru</a>
+                    </div>
+                </div>
+                <!-- footer top END -->
+
+                <div class="footer-menu">
+                    <ul>
+                        <li><a href="#">Новости</a></li>
+                        <li><a href="#">Компетенции</a></li>
+                        <li><a href="#">Проекты</a></li>
+                        <li><a href="#">Мероприятия</a></li>
+                        <li><a href="#">Аналитическая информация</a></li>
+                        <li><a href="#">Обратная связь</a></li>
+                        <li><a href="#">Контакты</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-developer"><a href="#"><img src="images/2be.png" alt="" width="196" height="26" /></a></div>
+
+            </div>
+        </footer>
+
+    </body>
+</html>
